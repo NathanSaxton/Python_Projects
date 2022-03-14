@@ -150,7 +150,7 @@ def onRefresh(self):#refreshes the listbox with the most up-to-date info on the 
             varList = cur.fetchall()[i]
             for item in varList:
                 self.lstList1.insert(0,str(item))
-                i = i+i
+                i += i
     conn.close()
 
 def onClear(self):#clear all text boxes
