@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import *
+from tkinter import messagebox
 import os
 import sqlite3
 
@@ -56,7 +57,7 @@ def onSelect(self,event):#select item on ListBox
     conn = sqlite3.connect('phonebook.db')
     with conn:
         cur = conn.cursor()
-        cur.execute("""SELECT col_fname,col_lname,col_phone,col_email FROM tbl_phonebook WHERE col_fullname = (?)""", [Value])
+        cur.execute("""SELECT col_fname,col_lname,col_phone,col_email FROM tbl_phonebook WHERE col_fullname = (?)""", [value])
         varBody = cur.fetchall()
         for data in varBody: #returns a tuple using data[] durint the iteration
             self.txt_fname.delete(0,END)
@@ -112,7 +113,7 @@ def onDelete(self):
         cur.execute("""SELECT COUNT(*) FROM tbl_phonebook""")
         count = cur.fetchone()[0]
         if count > 1:
-            confirm - messagebox.askokcancel("Delete Confirmation", "All information associated with, ({}) \nwill be permenantly deleted from the database. \n\n Proceed with the deletion request?".format(var_select))
+            confirm = messagebox.askokcancel("Delete Confirmation", "All information associated with, ({}) \nwill be permenantly deleted from the database. \n\n Proceed with the deletion request?".format(var_select))
             if confirm:
                 conn = sqlite3.connect('phonebook.db')
                 with conn:
@@ -130,7 +131,6 @@ def onDeleted(self): #clear text boxes from deleted items
     self.txt_lname.delete(0,END)
     self.txt_phone.delete(0,END)
     self.txt_email.delete(0,END)
-    onRefresh(self)
     try:
         index = self.lstList1.curselection()[0]
         self.lstList1.delete(index)
@@ -150,7 +150,7 @@ def onRefresh(self):#refreshes the listbox with the most up-to-date info on the 
             varList = cur.fetchall()[i]
             for item in varList:
                 self.lstList1.insert(0,str(item))
-                i += i
+                i += 1
     conn.close()
 
 def onClear(self):#clear all text boxes
