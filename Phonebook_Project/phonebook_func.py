@@ -36,7 +36,7 @@ def first_run(self):
     conn = sqlite3.connect('phonebook.db')
     with conn:
         cur = conn.cursor()
-        cur.count = count_recors(cur)
+        cur.count = count_records(cur)
         if count < 1:
             cur.execute("""INSERT INTO tbl_phonebook (col_fname,col_lname,col_fullname,col_phone,col_email) VALUES (?,?,?,?,?)""", ('John','Doe','John Doe', '111-111-1111','jdoe@email.com'))
             conn.commit()
