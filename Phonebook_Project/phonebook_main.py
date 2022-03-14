@@ -40,5 +40,5 @@ class ParentWindow(Frame):
 
 if __name__ == "__main__":
     root = tk.Tk()
-    app = ParentWindow(rood)
+    app = ParentWindow(root)
     root.mainloop()
