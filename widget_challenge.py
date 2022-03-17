@@ -35,7 +35,7 @@ class main(Frame):
         webbrowser.open_new_tab(os.fspath("announcement.html"))
 
 
-if __name__ == "__main__"
+if __name__ == "__main__":
     root = tk.Tk()
     app = main(root)
     root.mainloop()
