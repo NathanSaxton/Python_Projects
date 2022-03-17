@@ -54,7 +54,7 @@ class mainWindow(Frame):
 
     def setDailyTransfer(self, initialSet = False): #function used to set up the daily check for folders and to be looped daily
         if self.timer == None and self.dailySet == False: #initial iteration
-            self.timer = threading.Timer(2, self.dailyTransfer) #sets timer for 24 hours to execute the dailyTransfer function
+            self.timer = threading.Timer(24*60*60, self.dailyTransfer) #sets timer for 24 hours to execute the dailyTransfer function
             self.dailySet = True
             self.timer.start()
             self.activeTimer = True
@@ -66,7 +66,7 @@ class mainWindow(Frame):
             else:
                 self.timer.cancel()
                 self.activeTimer = False
-                self.timer = threading.Timer(2, self.dailyTransfer) #reset the timer for 24 hours
+                self.timer = threading.Timer(24*60*60, self.dailyTransfer) #reset the timer for 24 hours
                 self.timer.start()
                 self.activeTimer = True
 
